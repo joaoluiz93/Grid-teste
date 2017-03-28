@@ -7,6 +7,7 @@ package tela;
 
 import validacao.Limitecaracteres;
 import javax.swing.JOptionPane;
+import validacao.CPF;
 import validacao.JtextFieldSomenteNumeros;
 import validacao.Validadores;
 
@@ -24,12 +25,11 @@ public class CamposFormatados extends javax.swing.JFrame {
         initComponents();
        tfnumeros = new JtextFieldSomenteNumeros();
        tatexto.setDocument(new Limitecaracteres(8) );
-       cpf = new Validadores();
        cep = new Validadores();
        tel = new Validadores();
     }
     
-   private final Validadores cpf;
+   
    private final Validadores cep;
    private final Validadores tel;
            
@@ -186,12 +186,21 @@ public class CamposFormatados extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
            
-  String cpfDesmascarado = cpf.removeMaskCPF(tfcpf.getText());
+  String cpf = tfcpf.getText();
   String cepDesmascarado = cep.removeMaskCEP(tfcep.getText());
   String telDesmascarado = tel.removeMaskTel(tftel.getText());
-  JOptionPane.showMessageDialog(null, "O cpf e:"+ cpfDesmascarado+"\n"
+  CPF pf = new CPF(cpf);
+        if(pf.isCPF()){
+            cpf = pf.getCPF(false);
+              JOptionPane.showMessageDialog(null, "O cpf e:"+ cpf +"\n"
           +"O cep e:"+ cepDesmascarado+ "\n"+
           "O tel e: "+telDesmascarado);
+            
+        }else{
+            JOptionPane.showMessageDialog(rootPane,"CPF inválido!");
+        }
+  
+
  
         
     }//GEN-LAST:event_jButton1ActionPerformed
