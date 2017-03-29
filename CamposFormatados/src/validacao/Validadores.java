@@ -5,6 +5,12 @@
  */
 package validacao;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -25,4 +31,21 @@ public class Validadores {
      public String removeMaskTel(String tel){
          return tel.replaceAll("[()-]", "");
      }
+     
+     public String dataValida(String d){
+          
+      Date data = null;
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                    format.setLenient(false);
+                    data = format.parse(d);
+            } catch (ParseException e) {
+     		JOptionPane.showMessageDialog(null,
+                        "Data inválida. Tente novamente!",
+                        "AVISO",
+                        JOptionPane.WARNING_MESSAGE);
+                return null;
+            }
+            return d;
+}
 }
