@@ -12,7 +12,7 @@ import javax.swing.text.MaskFormatter;
  *
  * @author joaol
  */
-public class CPF {
+public class CPF{
      private String cpf;
     private static final String Formato = "###.###.###-##";
     
