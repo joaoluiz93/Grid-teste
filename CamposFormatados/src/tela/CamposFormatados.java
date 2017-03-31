@@ -28,6 +28,7 @@ public class CamposFormatados extends javax.swing.JFrame {
        cep = new Validadores();
        tel = new Validadores();
        data = new Validadores();
+       hora = new Validadores();
        
        //cpf = new Validadores();
     }
@@ -36,7 +37,7 @@ public class CamposFormatados extends javax.swing.JFrame {
    private final Validadores cep;
    private final Validadores tel;
    private final Validadores data;
-           
+   private final Validadores hora;      
     
 
     /**
@@ -66,7 +67,7 @@ public class CamposFormatados extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         tdData = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
-        tdHora = new javax.swing.JFormattedTextField();
+        tfHora = new javax.swing.JFormattedTextField();
 
         jFormattedTextField1.setText("jFormattedTextField1");
 
@@ -158,7 +159,6 @@ public class CamposFormatados extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        tdData.setText("  /  /    ");
         tdData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tdDataActionPerformed(evt);
@@ -170,16 +170,16 @@ public class CamposFormatados extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
 
         try {
-            tdHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##:##")));
+            tfHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        tdHora.addActionListener(new java.awt.event.ActionListener() {
+        tfHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tdHoraActionPerformed(evt);
+                tfHoraActionPerformed(evt);
             }
         });
-        getContentPane().add(tdHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 60, -1));
+        getContentPane().add(tfHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 60, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -195,12 +195,14 @@ public class CamposFormatados extends javax.swing.JFrame {
   String telDesmascarado = tel.removeMaskTel(tftel.getText());
   String data1 = data.dataValida(tdData.getText());
   CPF pf = new CPF(cpf);
+  String hora1 = hora.horaValida(tfHora.getText());
         if(pf.isCPF()){
             cpf = pf.getCPF(false);
             JOptionPane.showMessageDialog(null, "O cpf e:"+ cpf +"\n"
-          +"O cep e:"+ cepDesmascarado+ "\n"+
-          "O tel e: "+telDesmascarado+"\n"+
-                      "A data é:" +data1);
+          +"O cep é:"+ cepDesmascarado+ "\n"+
+          "O tel é: "+telDesmascarado+"\n"+
+                      "A data é: " +data1+"\n"+
+                    "A hora é: "+hora1);
             
         }else{
             JOptionPane.showMessageDialog(rootPane,"CPF inválido!");
@@ -220,9 +222,9 @@ public class CamposFormatados extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tdDataActionPerformed
 
-    private void tdHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdHoraActionPerformed
+    private void tfHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHoraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tdHoraActionPerformed
+    }//GEN-LAST:event_tfHoraActionPerformed
 
     private void tftelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tftelActionPerformed
         // TODO add your handling code here:
@@ -277,7 +279,7 @@ public class CamposFormatados extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea tatexto;
     private javax.swing.JFormattedTextField tdData;
-    private javax.swing.JFormattedTextField tdHora;
+    private javax.swing.JFormattedTextField tfHora;
     private javax.swing.JFormattedTextField tfcep;
     private javax.swing.JFormattedTextField tfcpf;
     private javax.swing.JFormattedTextField tfdigitos;

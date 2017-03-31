@@ -47,5 +47,22 @@ public class Validadores {
                 return null;
             }
             return d;
+}   
+     
+     public String horaValida(String h){
+          
+      Date data = null;
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+            try {
+                    format.setLenient(false);
+                    data = format.parse(h);
+            } catch (ParseException e) {
+     		JOptionPane.showMessageDialog(null,
+                        "Hora inválida. Tente novamente!",
+                        "AVISO",
+                        JOptionPane.WARNING_MESSAGE);
+                return null;
+            }
+            return h;
 }
 }
